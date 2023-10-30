@@ -47,7 +47,10 @@ android {
 }
 
 dependencies {
-
+    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1")
+    implementation ("com.google.code.gson:gson:2.8.5")
+    implementation ("com.airbnb.android:lottie-compose:5.2.0")
     implementation ("androidx.navigation:navigation-compose:2.5.1")
     implementation ("com.google.accompanist:accompanist-navigation-animation:0.23.1")
     implementation("androidx.navigation:navigation-compose:2.4.0")

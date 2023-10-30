@@ -92,7 +92,7 @@ fun LoginScreen(navController: NavHostController) {
                 .fillMaxSize()
                 .padding(10.dp),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Row(
                 modifier = Modifier.padding(bottom = 90.dp)

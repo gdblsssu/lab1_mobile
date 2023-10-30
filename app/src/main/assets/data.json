@@ -1,0 +1,72 @@
+[
+  {
+    "id": "2o1",
+    "name": "Cat 1",
+    "url": "https://cdn2.thecatapi.com/images/2o1.jpg",
+    "width": 1024,
+    "height": 768
+  },
+  {
+    "id": "3dh",
+    "name": "Cat 2",
+    "url": "https://cdn2.thecatapi.com/images/3dh.jpg",
+    "width": 500,
+    "height": 375
+  },
+  {
+    "id": "4dj",
+    "name": "Cat 3",
+    "url": "https://cdn2.thecatapi.com/images/4dj.gif",
+    "width": 250,
+    "height": 174
+  },
+  {
+    "id": "5rf",
+    "name": "Cat 4",
+    "url": "https://cdn2.thecatapi.com/images/5rf.jpg",
+    "width": 560,
+    "height": 560
+  },
+  {
+    "id": "abm",
+    "name": "Cat 5",
+    "url": "https://cdn2.thecatapi.com/images/abm.jpg",
+    "width": 530,
+    "height": 397
+  },
+  {
+    "id": "alf",
+    "name": "Cat 6",
+    "url": "https://cdn2.thecatapi.com/images/alf.png",
+    "width": 1024,
+    "height": 768
+  },
+  {
+    "id": "bl0",
+    "name": "Cat 7",
+    "url": "https://cdn2.thecatapi.com/images/bl0.jpg",
+    "width": 420,
+    "height": 600
+  },
+  {
+    "id": "cno",
+    "name": "Cat 8",
+    "url": "https://cdn2.thecatapi.com/images/cno.jpg",
+    "width": 1000,
+    "height": 876
+  },
+  {
+    "id": "con",
+    "name": "Cat 9",
+    "url": "https://cdn2.thecatapi.com/images/con.jpg",
+    "width": 375,
+    "height": 500
+  },
+  {
+    "id": "QCcTOaIQW",
+    "name": "Cat 10",
+    "url": "https://cdn2.thecatapi.com/images/QCcTOaIQW.jpg",
+    "width": 1553,
+    "height": 2047
+  }
+]
