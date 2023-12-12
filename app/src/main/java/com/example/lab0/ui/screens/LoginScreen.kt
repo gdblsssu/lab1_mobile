@@ -45,9 +45,9 @@ import com.example.lab0.ui.theme.NavRoutes
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(navController: NavHostController) {
-    val username = remember { mutableStateOf("") }
-    val pass = remember { mutableStateOf("") }
-    val email = remember { mutableStateOf("") }
+    val username = remember { mutableStateOf("a") }
+    val pass = remember { mutableStateOf("a") }
+    val email = remember { mutableStateOf("a") }
     val focusManager = LocalFocusManager.current
     val context = LocalContext.current
 
