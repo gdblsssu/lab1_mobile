@@ -19,6 +19,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -34,10 +36,11 @@ import com.example.lab0.ui.theme.NavRoutes
 import coil.compose.rememberAsyncImagePainter
 import com.example.lab0.data.Cat
 import androidx.compose.foundation.Image as Image
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListScreen(navController: NavHostController, viewModel: MainViewModel) {
+fun ListScreen(navController: NavHostController, viewModel: MainViewModel = hiltViewModel()) {
     val text = remember { mutableStateOf("")}
     Column(
         modifier = Modifier
@@ -71,7 +74,9 @@ fun ListScreen(navController: NavHostController, viewModel: MainViewModel) {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
+            val cats by viewModel.cats.collectAsState(
+                initial = emptyList()
+            )
             if (viewModel.loading) {
                 CircularProgressIndicator()
 //если есть сообщение об ошибке, показываем его
@@ -85,7 +90,7 @@ fun ListScreen(navController: NavHostController, viewModel: MainViewModel) {
                 )
             }
 //рендерим список
-            else CatsList(cats = viewModel.catsList, navController)
+            else CatsList(cats = ArrayList(cats), navController)
         }
     }
 

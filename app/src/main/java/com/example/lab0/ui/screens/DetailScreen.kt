@@ -21,9 +21,10 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
-fun DetailScreen(navController: NavHostController, id: String?, viewModel: MainViewModel) {
+fun DetailScreen(navController: NavHostController, id: String?, viewModel: MainViewModel = hiltViewModel()) {
     Box(
         modifier = Modifier
             .fillMaxSize(),
