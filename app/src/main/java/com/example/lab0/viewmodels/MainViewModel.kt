@@ -1,6 +1,8 @@
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lab0.api.Common
@@ -18,8 +20,13 @@ class MainViewModel @Inject constructor(private val repo: CatRepository) : ViewM
     var errorMessage: String by mutableStateOf("")
     var loading: Boolean by mutableStateOf(true)
     var catsList:ArrayList<Cat> by mutableStateOf(arrayListOf())
-    val cats = repo.getCatsFromRoom()
+    private val _all = MutableLiveData<List<Cat>>()
+    val all: LiveData<List<Cat>>
+        get() = _all
 
+    fun getAll() = viewModelScope.launch {
+        repo.getCatsFromRoom()
+    }
     fun requestCatList(){
         viewModelScope.launch {
             try {

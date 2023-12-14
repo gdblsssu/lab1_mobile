@@ -1,5 +1,6 @@
 package com.example.lab0.data.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -13,16 +14,9 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CatDao {
-    @Query("SELECT * FROM $CAT_TABLE")
-    fun getCats(): Flow<List<Cat>>
-    @Query("SELECT * FROM $CAT_TABLE WHERE id = :id")
-    fun getCat(id: Int): Flow<Cat>
-    @Insert(onConflict = REPLACE)
-    fun addCat(cat: Cat)
+    @Query("SELECT * FROM cat_table")
+    fun getCats(): LiveData<List<Cat>>
+
     @Insert(onConflict = REPLACE)
     fun addCats(cat: List<Cat>)
-    @Update
-    fun updateCat(cat: Cat)
-    @Delete
-    fun deleteCat(cat: Cat)
 }

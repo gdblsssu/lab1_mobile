@@ -4,15 +4,15 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.lab0.utils.Constans.Companion.CAT_TABLE
 import com.google.gson.annotations.SerializedName
-@Entity(tableName = CAT_TABLE)
+@Entity(tableName = "cat_table")
 data class Cat(@SerializedName("name")
-               val name: String = "",
+               var name: String = "",
                @SerializedName("width")
-               val width: Int = 0,
+               var width: Int = 0,
                @PrimaryKey
                @SerializedName("id")
-               val id: String = "",
+               var id: String = "",
                @SerializedName("url")
-               val url: String = "",
+               var url: String = "",
                @SerializedName("height")
-               val height: Int = 0)
+               var height: Int = 0)

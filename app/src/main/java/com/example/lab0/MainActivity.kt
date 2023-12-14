@@ -97,9 +97,9 @@ fun GreetingPreview() {
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun Greeting(fillMaxSize: Modifier) {
-    val viewModel: MainViewModel = viewModel()
     val navController = rememberAnimatedNavController()
     val springSpec = spring<IntOffset>(dampingRatio = Spring.DampingRatioMediumBouncy)
+
     AnimatedNavHost(
         navController = navController,
         startDestination = NavRoutes.Splash.route,
@@ -137,7 +137,7 @@ fun Greeting(fillMaxSize: Modifier) {
             popExitTransition = { ->
                 slideOutHorizontally(targetOffsetX = { 1000 }, animationSpec = springSpec)
             }) {
-            ListScreen(navController = navController, viewModel)
+            ListScreen(navController = navController)
         }
         composable(NavRoutes.Detail.route + "/{id}",
             enterTransition = { ->
@@ -153,7 +153,7 @@ fun Greeting(fillMaxSize: Modifier) {
                 slideOutHorizontally(targetOffsetX = { 1000 }, animationSpec = springSpec)
             }) { backStackEntry ->
             val id = backStackEntry.arguments?.getString("id")
-            DetailScreen(navController = navController, id, viewModel)
+            DetailScreen(navController = navController, id)
         }
     }
 }

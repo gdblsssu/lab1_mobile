@@ -37,6 +37,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.lab0.data.Cat
 import androidx.compose.foundation.Image as Image
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.map
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -74,9 +75,12 @@ fun ListScreen(navController: NavHostController, viewModel: MainViewModel = hilt
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            val cats by viewModel.cats.collectAsState(
-                initial = emptyList()
-            )
+
+        }
+        var temp: ArrayList<Cat>? = null;
+        val cats = viewModel.all.value?.forEach{
+            temp?.add(it)
+        }
             if (viewModel.loading) {
                 CircularProgressIndicator()
 //если есть сообщение об ошибке, показываем его
@@ -90,11 +94,12 @@ fun ListScreen(navController: NavHostController, viewModel: MainViewModel = hilt
                 )
             }
 //рендерим список
-            else CatsList(cats = ArrayList(cats), navController)
+            else temp?.let { CatsList(cats = it, navController) }
         }
     }
 
-}
+
+
 @Composable
 fun CatsList(cats: ArrayList<Cat>, navController: NavHostController) {
     LazyColumn {
