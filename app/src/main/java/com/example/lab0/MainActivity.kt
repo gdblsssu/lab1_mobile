@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
@@ -73,9 +74,11 @@ import com.example.lab0.ui.theme.NavRoutes
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.format.TextStyle
 
-class MainActivity : ComponentActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -99,7 +102,6 @@ fun GreetingPreview() {
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun Greeting(fillMaxSize: Modifier) {
-    val viewModel: MainViewModel = viewModel()
     val navController = rememberAnimatedNavController()
     val springSpec = spring<IntOffset>(dampingRatio = Spring.DampingRatioMediumBouncy)
     AnimatedNavHost(
@@ -139,7 +141,7 @@ fun Greeting(fillMaxSize: Modifier) {
             popExitTransition = { ->
                 slideOutHorizontally(targetOffsetX = { 1000 }, animationSpec = springSpec)
             }) {
-            ListScreen(navController = navController, viewModel)
+            ListScreen(navController = navController)
         }
         composable(NavRoutes.Detail.route + "/{id}",
             enterTransition = { ->
@@ -155,7 +157,7 @@ fun Greeting(fillMaxSize: Modifier) {
                 slideOutHorizontally(targetOffsetX = { 1000 }, animationSpec = springSpec)
             }) { backStackEntry ->
             val id = backStackEntry.arguments?.getString("id")
-            DetailScreen(navController = navController, id, viewModel)
+            DetailScreen(navController = navController, id)
         }
     }
 }

@@ -19,6 +19,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -29,6 +31,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.lab0.ui.theme.NavRoutes
 import coil.compose.rememberAsyncImagePainter
@@ -37,7 +40,7 @@ import androidx.compose.foundation.Image as Image
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListScreen(navController: NavHostController, viewModel: MainViewModel) {
+fun ListScreen(navController: NavHostController, viewModel: MainViewModel = hiltViewModel()) {
     val text = remember { mutableStateOf("")}
     Column(
         modifier = Modifier
@@ -71,7 +74,9 @@ fun ListScreen(navController: NavHostController, viewModel: MainViewModel) {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-
+            val cats by viewModel.cats.collectAsState(
+                initial = emptyList()
+            )
             if (viewModel.loading) {
                 CircularProgressIndicator()
 //если есть сообщение об ошибке, показываем его
