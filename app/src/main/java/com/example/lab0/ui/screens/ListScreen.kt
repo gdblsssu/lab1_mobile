@@ -1,6 +1,5 @@
 package com.example.lab0.ui.screens
 
-import MainViewModel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +18,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -29,16 +30,21 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.example.lab0.ui.theme.NavRoutes
 import coil.compose.rememberAsyncImagePainter
 import com.example.lab0.data.Cat
+import com.example.lab0.viewmodels.MainViewModel
 import androidx.compose.foundation.Image as Image
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ListScreen(navController: NavHostController, viewModel: MainViewModel) {
+fun ListScreen(navController: NavHostController, viewModel: MainViewModel =  hiltViewModel()) {
     val text = remember { mutableStateOf("")}
+    val cats by viewModel.cats.collectAsState(
+        initial = emptyList()
+    )
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -85,7 +91,7 @@ fun ListScreen(navController: NavHostController, viewModel: MainViewModel) {
                 )
             }
 //рендерим список
-            else CatsList(cats = viewModel.catsList, navController)
+            else CatsList(cats = ArrayList(cats), navController)
         }
     }
 

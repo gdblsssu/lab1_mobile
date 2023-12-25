@@ -1,6 +1,5 @@
 package com.example.lab0.ui.screens
 
-import MainViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,12 +17,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import com.example.lab0.viewmodels.MainViewModel
 
 @Composable
-fun DetailScreen(navController: NavHostController, id: String?, viewModel: MainViewModel) {
+fun DetailScreen(navController: NavHostController, id: String?, viewModel: MainViewModel = hiltViewModel()) {
     Box(
         modifier = Modifier
             .fillMaxSize(),
@@ -41,7 +42,7 @@ fun DetailScreen(navController: NavHostController, id: String?, viewModel: MainV
                 .weight(4f)){
                 Image(
                     modifier = Modifier.fillMaxSize(),
-                    painter = rememberAsyncImagePainter(viewModel.catsList[id!!.toInt()].url),
+                    painter = rememberAsyncImagePainter(viewModel.cats),
                     contentDescription = "cat",
                     contentScale = ContentScale.Crop
                 )
@@ -53,7 +54,7 @@ fun DetailScreen(navController: NavHostController, id: String?, viewModel: MainV
                     Row(
                         Modifier.padding(top = 10.dp, bottom = 10.dp)
                     ) {
-                        Text("Name: ${viewModel.catsList[id!!.toInt()].name}", style = MaterialTheme.typography.labelLarge,
+                        Text("Name : ${viewModel.catsList[id!!.toInt()].name}", style = MaterialTheme.typography.labelLarge,
                             fontSize = 20.sp)
                     }
                     Row {
